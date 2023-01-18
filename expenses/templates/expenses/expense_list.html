@@ -5,17 +5,9 @@
 <a href="{% url 'expenses:expense-create' %}">add</a>
 
 <form method="get" action="">
-	{%for x in form%}
-	{{x.as_p}}
-	{%endfor%}
-
-
-<br />
+  {{form.as_p}}
   <button type="submit">search</button>
 </form>
-
-
-
 <br>
 <table border="1">
 	<caption>Expenses</caption>
@@ -37,7 +29,7 @@
 		<td>{{ obj.category|default:"-" }}</td>
 		<td>{{ obj.name|default:"-" }}</td>
 		<td>{{ obj.amount|floatformat:2 }}</td>
-		<td>{{obj.date|date:"Y-m-d"}}</td>
+		<td>{{obj.date}}</td>
 		<td>
 		  <a href="{% url 'expenses:expense-edit' obj.id %}">edit</a>
 		  <a href="{% url 'expenses:expense-delete' obj.id %}">delete</a>

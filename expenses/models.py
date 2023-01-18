@@ -1,12 +1,6 @@
 import datetime
 from django.db import models
 
-SORTING_ORDER = [
-    ('-category', 'category decreasing',),
-    ('category', 'category increasing',),
-    ('-date', 'date increasing',),
-    ('date', 'date decreasing')
-    ]
 
 class Category(models.Model):
     class Meta:
@@ -23,6 +17,7 @@ class Expense(models.Model):
         ordering = ('-date', '-pk')
 
     category = models.ForeignKey(Category, models.PROTECT, null=True, blank=True)
+
     name = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
 
@@ -30,9 +25,3 @@ class Expense(models.Model):
 
     def __str__(self):
         return f'{self.date} {self.name} {self.amount}'
-
-class SortBy(models.Model):
-    dropdown = models.CharField(max_length=13, choices=SORTING_ORDER)
-    
-    def __str__(self):
-        return f'{self.dropdown}'

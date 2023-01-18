@@ -3,7 +3,6 @@ from django.urls import path, reverse_lazy
 from .models import Expense, Category
 from .views import ExpenseListView, CategoryListView
 
-print(Expense.objects.order_by('-date'))
 
 urlpatterns = [
     path('expense/list/',
